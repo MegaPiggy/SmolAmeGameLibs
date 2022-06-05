@@ -15,4 +15,4 @@ jobs:
         run: nuget pack package -OutputFileNamesWithoutVersion -OutputDirectory build -Properties "git=https://github.com/${{ github.repository }}.git;name=${{ github.event.repository.name }};author=${{ github.repository_owner }};description=${{ github.event.repository.description }}"
       - name: Publish nuget
         run: |
-          nuget push "build/${{ github.event.repository.name }}.nupkg" -ApiKey ${{ secrets.NUGET_KEY }} -Source https://api.nuget.org/v3/index.json
+          nuget push -SkipDuplicate "build/${{ github.event.repository.name }}.nupkg" -ApiKey ${{ secrets.NUGET_KEY }} -Source https://api.nuget.org/v3/index.json
